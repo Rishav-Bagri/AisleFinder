@@ -40,7 +40,7 @@ export default function StoreGrid({ userPosition, path, product, storeSections, 
   useMapControls(controlsRef, product, isProductMarkerRendered);
 
   return (
-    <div className="flex-1 overflow-hidden bg-gray-300">
+    <div className="flex-1 overflow-hidden bg-[#e6f4ea]">
       <TransformWrapper minScale={0.1} maxScale={10}>
         {({ zoomToElement, zoomToElements, ...rest }) => {
           controlsRef.current = { zoomToElement, zoomToElements, ...rest };
@@ -56,12 +56,13 @@ export default function StoreGrid({ userPosition, path, product, storeSections, 
                 }}
               >
                 <div
-                  className="absolute"
+                  className="absolute shadow-lg overflow-hidden"
                   style={{
                     left: PADDING_X * 32,
                     top: PADDING_Y * 32,
                     width: COLS * 32,
                     height: ROWS * 32,
+                    backgroundColor: 'white',
                   }}
                 >
                   <div
