@@ -10,10 +10,22 @@ function App() {
   const [userPosition, setUserPosition] = useState({ x: 41, y: 25 });
   const [animatedPath, setAnimatedPath] = useState([]);
   const [product, setProduct] = useState(null);
+  const [isProductMarkerRendered, setIsProductMarkerRendered] = useState(false);
+  const [isMoveMode, setIsMoveMode] = useState(false); // New state for move mode
+
+  const handleProductMarkerRender = () => {
+    setIsProductMarkerRendered(true);
+  };
+
+  const toggleMoveMode = () => {
+    setIsMoveMode(prev => !prev);
+  };
+
   const [isLoading, setIsLoading] = useState(false);
   const [notification, setNotification] = useState('');
 
   const handleSearch = (query) => {
+    setIsProductMarkerRendered(false); // Reset on new search
     if (isLoading) return;
 
     setIsLoading(true);
@@ -81,11 +93,15 @@ function App() {
       </header>
       <main className="flex-1 flex flex-col overflow-hidden">
         <StoreGrid
+          isProductMarkerRendered={isProductMarkerRendered}
+          onProductMarkerRender={handleProductMarkerRender}
           userPosition={userPosition}
           path={animatedPath}
           product={product}
           storeSections={storeSections}
           onTileClick={handleSetUserPosition}
+          isMoveMode={isMoveMode}
+          onToggleMoveMode={toggleMoveMode}
         />
       </main>
       <Notification message={notification} />
@@ -94,4 +110,3 @@ function App() {
 }
 
 export default App;
-

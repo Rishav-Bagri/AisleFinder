@@ -7,7 +7,7 @@ export const productLocations = {
   'cereal': {
     name: 'Cereal & Breakfast',
     real: { x: 5, y: 8 },
-    access: { x: 7, y: 8 },
+    access: { x: 4 , y: 8 },
   },
   'coffee': {
     name: 'Coffee & Tea',

@@ -1,16 +1,30 @@
 import React from 'react';
-import { FaCrosshairs } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+import { FaCrosshairs, FaRegHandPaper } from 'react-icons/fa';
 
-export default function Controls({ onCenterView }) {
+export default function Controls({ onCenterView, onToggleMoveMode, isMoveMode }) {
   return (
-        <div className="absolute bottom-8 right-3 sm:bottom-5 sm:right-5 z-20">
+    <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+      <button
+        onClick={onToggleMoveMode}
+        className={`p-2 rounded-full shadow-md ${!isMoveMode ? 'bg-yellow-100 text-white scale-105' : ' text-black'}`}
+        aria-label="Toggle move mode"
+      >
+        <FaRegHandPaper className="w-5 h-5" color="black" />
+      </button>
       <button
         onClick={onCenterView}
-                className="bg-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        aria-label="Center on user"
+        className="p-2 rounded-full bg-white shadow-md"
+        aria-label="Center view"
       >
-                <FaCrosshairs className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
+        <FaCrosshairs className="w-5 h-5" />
       </button>
     </div>
   );
 }
+
+Controls.propTypes = {
+  onCenterView: PropTypes.func.isRequired,
+  onToggleMoveMode: PropTypes.func.isRequired,
+  isMoveMode: PropTypes.bool.isRequired,
+};
